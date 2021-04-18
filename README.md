@@ -16,7 +16,7 @@ In our examples we will use C:\HandsOn. A recommendation is not to use non-alpha
 mkdir C:\HandsOn
 ```
 
-![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img1.PNG?raw=true "Title")
+![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img1.PNG)
 
 Step 2) Download the first tutorial (https://github.com/MareesAT/GWA_tutorial/blob/master/1_QC_GWAS.zip?raw=true) and unzip the file at your analysis folder.
 
