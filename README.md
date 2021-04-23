@@ -66,3 +66,31 @@ For a thorough theoretical explanation of all QC steps we refer to the article a
 
 ### Start Analysis
 
+Change directory to a folder on your Windows device containing all files from ‘1_QC_GWAS.zip’.
+
+```
+cd <path to the folder 1_QC_GWAS>
+```
+
+In our example, we just type
+
+```
+cd C:\HandsOn\1_QC_GWAS
+```
+
+#### Step 1: Investigate missingness per individual and per SNP and make histograms
+
+The command to this step is 
+
+```
+<path to plink.exe> --bfile HapMap_3_r3_1 --missing
+```
+
+In our example
+
+```
+C:\HandsOn\plink.exe --bfile HapMap_3_r3_1 --missing
+```
+Output: plink.imiss and plink.lmiss, these files show respectively the proportion of missing SNPs per individual and the proportion of missing individuals per SNP.
+
+![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img6.PNG)
