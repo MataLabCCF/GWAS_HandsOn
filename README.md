@@ -299,3 +299,150 @@ Theoretical background for this step is given in our accompanying article: https
 
 
 #### Step 5
+
+**Generate a plot of the distribution of the heterozygosity rate of your subjects and remove individuals with a heterozygosity rate deviating more than 3 sd from the mean.**
+
+Checks for heterozygosity are performed on a set of SNPs which are not highly correlated.
+
+Therefore, to generate a list of non-(highly)correlated SNPs, we exclude high inversion regions (inversion.txt [High LD regions]) and prune the SNPs using the command --indep-pairwise’.
+
+The parameters ‘50 5 0.2’ stand respectively for: the window size, the number of SNPs to shift the window at each step, and the multiple correlation coefficient for a SNP being regressed on all other SNPs simultaneously.
+
+```
+<path to plink.exe> --bfile HapMap_3_r3_9 --exclude inversion.txt --range --indep-pairwise 50 5 0.2 --out indepSNP
+```
+
+In our example
+
+```
+C:\HandsOn\plink.exe --bfile HapMap_3_r3_9 --exclude inversion.txt --range --indep-pairwise 50 5 0.2 --out indepSNP
+```
+
+Note, don't delete the file indepSNP.prune.in, we will use this file in later steps of the tutorial.
+
+```
+<path to plink.exe> --bfile HapMap_3_r3_9 --extract indepSNP.prune.in --het --out R_check
+```
+
+In our example
+
+```
+C:\HandsOn\plink.exe --bfile HapMap_3_r3_9 --extract indepSNP.prune.in --het --out R_check
+```
+
+This file contains your pruned data set.
+
+Plot of the heterozygosity rate distribution. Open the script check_heterozygosity_rate.R and run the commands as mentioned before.
+
+The following code generates a list of individuals who deviate more than 3 standard deviations from the heterozygosity rate mean. Open the script heterozygosity_outliers_list.R and run the commands as mentioned before. The output of the command above: fail-het-ind.txt .
+
+When using our example data/the HapMap data this list contains 2 individuals (i.e., two individuals have a heterozygosity rate deviating more than 3 SD's from the mean).
+
+Remove heterozygosity rate outliers.
+
+```
+<path to plink.exe> --bfile HapMap_3_r3_9 --remove het_fail_ind.txt --make-bed --out HapMap_3_r3_10
+```
+
+In our example
+
+```
+C:\HandsOn\plink.exe --bfile HapMap_3_r3_9 --remove het_fail_ind.txt --make-bed --out HapMap_3_r3_10
+```
+
+#### Step 6
+
+It is essential to check datasets you analyse for cryptic relatedness.
+Assuming a random population sample we are going to exclude all individuals above the pihat threshold of 0.2 in this tutorial.
+
+Check for relationships between individuals with a pihat > 0.2.
+
+```
+<path to plink.exe> --bfile HapMap_3_r3_10 --extract indepSNP.prune.in --genome --min 0.2 --out pihat_min0.2
+```
+
+In our example
+
+```
+C:\HandsOn\plink.exe --bfile HapMap_3_r3_10 --extract indepSNP.prune.in --genome --min 0.2 --out pihat_min0.2
+```
+
+The HapMap dataset is known to contain parent-offspring relations. 
+The following commands will visualize specifically these parent-offspring relations, using the z values. Open the Relatedness.R and run the commands as mentioned before.
+
+The generated plots show a considerable amount of related individuals (explentation plot; PO = parent-offspring, UN = unrelated individuals) in the Hapmap data, this is expected since the dataset was constructed as such.
+
+Normally, family based data should be analyzed using specific family based methods. In this tutorial, for demonstrative purposes, we treat the relatedness as cryptic relatedness in a random population sample.
+
+In this tutorial, we aim to remove all 'relatedness' from our dataset.
+
+To demonstrate that the majority of the relatedness was due to parent-offspring we only include founders (individuals without parents in the dataset).
+
+
+```
+<path to plink.exe> --bfile HapMap_3_r3_10 --filter-founders --make-bed --out HapMap_3_r3_11
+```
+
+In our example
+
+```
+C:\HandsOn\plink.exe --bfile HapMap_3_r3_10 --filter-founders --make-bed --out HapMap_3_r3_11
+```
+
+Now we will look again for individuals with a pihat >0.2.
+
+```
+<path to plink.exe> --bfile HapMap_3_r3_11 --extract indepSNP.prune.in --genome --min 0.2 --out pihat_min0.2_in_founders
+```
+
+In our example
+
+```
+C:\HandsOn\plink.exe --bfile HapMap_3_r3_11 --extract indepSNP.prune.in --genome --min 0.2 --out pihat_min0.2_in_founders
+```
+
+The file 'pihat_min0.2_in_founders.genome' shows that, after exclusion of all non-founders, only 1 individual pair with a pihat greater than 0.2 remains in the HapMap data.
+This is likely to be a full sib or DZ twin pair based on the Z values. Noteworthy, they were not given the same family identity (FID) in the HapMap data.
+
+For each pair of 'related' individuals with a pihat > 0.2, we recommend to remove the individual with the lowest call rate. 
+
+
+```
+<path to plink.exe> --bfile HapMap_3_r3_11 --missing
+```
+
+In our example
+
+```
+C:\HandsOn\plink.exe --bfile HapMap_3_r3_11 --missing
+```
+
+Use a text editor to check which individual has the highest call rate in the 'related pair'. 
+
+Generate a list of FID and IID of the individual(s) with a Pihat above 0.2, to check who had the lower call rate of the pair.
+In our dataset the individual 13291  NA07045 had the lower call rate. So, create a file named 
+
+```
+echo 13291  NA07045 > 0.2_low_call_rate_pihat.txt
+```
+
+In case of multiple 'related' pairs, the list generated above can be extended using the same method as for our lone 'related' pair. You can also use text editors as wordpad or notepad to write this list
+
+Delete the individuals with the lowest call rate in 'related' pairs with a pihat > 0.2 
+plink 
+
+```
+<path to plink.exe> --bfile HapMap_3_r3_11 --remove 0.2_low_call_rate_pihat.txt --make-bed --out HapMap_3_r3_12
+```
+
+In our example
+
+```
+C:\HandsOn\plink.exe --bfile HapMap_3_r3_11 --remove 0.2_low_call_rate_pihat.txt --make-bed --out HapMap_3_r3_12
+```
+
+### CONGRATULATIONS!! You've just succesfully completed the first tutorial! You are now able to conduct a proper genetic QC. 
+
+For the next tutorial, using the script: 2_Main_script_MDS.txt, you need the following files:
+
+The bfile HapMap_3_r3_12 (i.e., HapMap_3_r3_12.fam,HapMap_3_r3_12.bed, and HapMap_3_r3_12.bim and indepSNP.prune.in
