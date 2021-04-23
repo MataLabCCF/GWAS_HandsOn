@@ -34,3 +34,8 @@ You have to install the RStudio after install R. We recomend to move plink.exe t
 
 ## Execution of Tutorial 1
 
+Once you've created a directory in which you have downloaded and unzipped the folder: 1_QC_GWAS.zip, you are ready to start the first part of the actual tutorial. All steps of this tutorial will be excecuted using the commands from the main script: 1_Main_script_QC_GWAS.txt, the only thing necessary in completing the tutorial is copy-and-paste the commands from the main script at the prompt Windows device. Note, make sure you are in the directory containing all files, which is the directory after the last command of step 2. There is no need to open the other files manually.
+
+![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img5.PNG)
+
+Different from the original material, we will use this GitHub readme as the tutorial file
