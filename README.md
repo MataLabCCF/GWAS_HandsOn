@@ -198,3 +198,51 @@ C:\HandsOn\plink.exe --bfile HapMap_3_r3_5 --impute-sex --make-bed --out HapMap_
 This imputes the sex based on the genotype information into your data set.
 
 ![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img14.PNG)
+
+#### Step 3
+
+**Generate a bfile with autosomal SNPs only and delete SNPs with a low minor allele frequency (MAF).**
+
+```
+<path to plink.exe> --bfile HapMap_3_r3_6 --chr 1-22 --make-bed --out HapMap_3_r3_7
+```
+
+In our example
+
+
+```
+C:\HandsOn\plink.exe --bfile HapMap_3_r3_6 --chr 1-22 --make-bed --out HapMap_3_r3_7
+```
+
+![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img15.PNG)
+
+**Generate a plot of the MAF distribution.**
+```
+<path to plink.exe>  --bfile HapMap_3_r3_7 --freq --out MAF_check
+```
+
+In our example
+
+```
+C:\HandsOn\plink.exe  --bfile HapMap_3_r3_7 --freq --out MAF_check
+```
+![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img16.PNG)
+
+After this, open the script MAF_check.R and run the script as mentioned before and run. This script will generate a histogram with MAF distribution (MAF_distribution.pdf)
+
+![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img17.PNG)
+
+Remove SNPs with a low MAF frequency. A conventional MAF threshold for a regular GWAS is between 0.01 or 0.05, depending on sample size.
+
+```
+<path to plink.exe>  --bfile HapMap_3_r3_7 --maf 0.05 --make-bed --out HapMap_3_r3_8
+```
+
+In our example
+
+```
+C:\HandsOn\plink.exe  --bfile HapMap_3_r3_7 --maf 0.05 --make-bed --out HapMap_3_r3_8
+```
+
+
+![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img18.PNG)
