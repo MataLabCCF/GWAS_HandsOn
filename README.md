@@ -23,7 +23,7 @@ Step 2) Download the first tutorial (https://github.com/MareesAT/GWA_tutorial/bl
 ![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img2.PNG)
 ![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img3.PNG)
 
-Step 3) This tutorial requires the open-source programming language R and the open-source whole genome association analysis toolset PLINK. If these programs are not already installed on your computer they can be downloaded from respectively: https://www.r-project.org/ https://www.cog-genomics.org/plink2
+Step 3) This tutorial requires the open-source programming language R and the open-source whole genome association analysis toolset PLINK. If these programs are not already installed on your computer they can be downloaded from respectively: https://www.r-project.org/ and https://www.cog-genomics.org/plink2
 
 We recommend using the newest versions. We also recommend install RStudio IDE (https://www.rstudio.com/products/rstudio/download/). 
 You have to install the RStudio after install R. We recomend to move plink.exe to the folder created before.
@@ -113,15 +113,15 @@ Delete SNPs with missingness >0.2.
 ```
 Delete SNPs with missingness >0.2.
 ```
-<path to plink.exe> --bfile HapMap_3_r3_1 --geno 0.2 --make-bed --out HapMap_3_r3_2
+<path to plink.exe> --bfile HapMap_3_r3_2 --geno 0.2 --make-bed --out HapMap_3_r3_3
 ```
 Delete SNPs with missingness >0.02.
 ```
-<path to plink.exe> --bfile HapMap_3_r3_1 --geno 0.2 --make-bed --out HapMap_3_r3_2
+<path to plink.exe> --bfile HapMap_3_r3_3 --geno 0.2 --make-bed --out HapMap_3_r3_4
 ```
 Delete individuals with missingness >0.02.
 ```
-<path to plink.exe> --bfile HapMap_3_r3_1 --geno 0.2 --make-bed --out HapMap_3_r3_2
+<path to plink.exe> --bfile HapMap_3_r3_4 --geno 0.2 --make-bed --out HapMap_3_r3_5
 ```
 The previous commands on our example
 ```
@@ -132,3 +132,69 @@ C:\HandsOn\plink.exe --bfile HapMap_3_r3_4 --mind 0.02 --make-bed --out HapMap_3
 ```
 ![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img8.PNG)
 ![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img9.PNG)
+
+#### Step 2
+
+**Check for sex discrepancy.**
+
+Subjects who were a priori determined as females must have a F value of <0.2, and subjects who were a priori determined as males must have a F value >0.8. This F value is based on the X chromosome inbreeding (homozygosity) estimate.
+
+Subjects who do not fulfil these requirements are flagged "PROBLEM" by PLINK.
+
+```
+<path to plink.exe> --bfile HapMap_3_r3_5 --check-sex 
+```
+
+In our example
+
+```
+C:\HandsOn\plink.exe --bfile HapMap_3_r3_5 --check-sex 
+```
+
+![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img10.PNG)
+
+**Generate plots to visualize the sex-check results.**
+
+Open the script gender_check.R in R-Studio and run all lines as mentioned before. This script will create three PDF files, one for men (Men_check.pdf), one for women (Women_check.pdf) and one for all individuals (gender_check.pdf)
+
+![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img11.PNG)
+
+These checks indicate that there is one woman with a sex discrepancy, F value of 0.99. (When using other datasets often a few discrepancies will be found). 
+
+The following two scripts can be used to deal with individuals with a sex discrepancy.
+Note, please use one of the two options below to generate the bfile hapmap_r3_6, this file we will use in the next step of this tutorial.
+
+**1) Delete individuals with sex discrepancy.**
+Open the scrpit extract_problem.R in R-Studio and run as mentioned above. This script will output a file (sex_discrepancy.txt) with two columns. The first column is the family ID and the second column is the individual ID. Using this file you can remove the individuals with problem using this command
+
+![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img12.PNG)
+
+```
+<path to plink.exe> --bfile HapMap_3_r3_5 --remove sex_discrepancy.txt --make-bed --out HapMap_3_r3_6 
+```
+
+In our example
+
+```
+C:\HandsOn\plink.exe --bfile HapMap_3_r3_5 --remove sex_discrepancy.txt --make-bed --out HapMap_3_r3_6  
+```
+This command removes the list of individuals with the status “PROBLEM”.
+
+![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img13.PNG)
+
+**2) impute-sex.**
+plink --bfile HapMap_3_r3_5 --impute-sex --make-bed --out HapMap_3_r3_6
+
+```
+<path to plink.exe> --bfile HapMap_3_r3_5 --impute-sex --make-bed --out HapMap_3_r3_6
+```
+
+In our example
+
+```
+C:\HandsOn\plink.exe --bfile HapMap_3_r3_5 --impute-sex --make-bed --out HapMap_3_r3_6
+```
+
+This imputes the sex based on the genotype information into your data set.
+
+![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img14.PNG)
