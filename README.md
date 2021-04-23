@@ -165,6 +165,7 @@ The following two scripts can be used to deal with individuals with a sex discre
 Note, please use one of the two options below to generate the bfile hapmap_r3_6, this file we will use in the next step of this tutorial.
 
 **1) Delete individuals with sex discrepancy.**
+
 Open the scrpit extract_problem.R in R-Studio and run as mentioned above. This script will output a file (sex_discrepancy.txt) with two columns. The first column is the family ID and the second column is the individual ID. Using this file you can remove the individuals with problem using this command
 
 ![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img12.PNG)
@@ -183,7 +184,6 @@ This command removes the list of individuals with the status “PROBLEM”.
 ![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img13.PNG)
 
 **2) impute-sex.**
-plink --bfile HapMap_3_r3_5 --impute-sex --make-bed --out HapMap_3_r3_6
 
 ```
 <path to plink.exe> --bfile HapMap_3_r3_5 --impute-sex --make-bed --out HapMap_3_r3_6
@@ -217,6 +217,7 @@ C:\HandsOn\plink.exe --bfile HapMap_3_r3_6 --chr 1-22 --make-bed --out HapMap_3_
 ![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img15.PNG)
 
 **Generate a plot of the MAF distribution.**
+
 ```
 <path to plink.exe>  --bfile HapMap_3_r3_7 --freq --out MAF_check
 ```
@@ -226,6 +227,7 @@ In our example
 ```
 C:\HandsOn\plink.exe  --bfile HapMap_3_r3_7 --freq --out MAF_check
 ```
+
 ![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img16.PNG)
 
 After this, open the script MAF_check.R and run the script as mentioned before and run. This script will generate a histogram with MAF distribution (MAF_distribution.pdf)
@@ -244,5 +246,56 @@ In our example
 C:\HandsOn\plink.exe  --bfile HapMap_3_r3_7 --maf 0.05 --make-bed --out HapMap_3_r3_8
 ```
 
-
 ![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img18.PNG)
+
+#### Step 4
+
+Delete SNPs which are not in Hardy-Weinberg equilibrium (HWE).
+Check the distribution of HWE p-values of all SNPs.
+
+```
+<path to plink.exe> --bfile HapMap_3_r3_8 --hardy
+```
+
+In our example
+
+```
+C:\HandsOn\plink.exe --bfile HapMap_3_r3_8 --hardy
+```
+
+![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img19.PNG)
+
+Open the script hwe.R. This script will select the SNPs with p-value < 0.00001 (we will call these SNPs as 'strongly deviating SNPs'), plot the MAF distribution for all SNPs (histhwe.pdf) and for the strongly deviating SNPs (histhwe_below_theshold.pdf)
+
+By default the --hwe option in plink only filters for controls.
+Therefore, we use two steps, first we use a stringent HWE threshold for controls, followed by a less stringent threshold for the case data.
+
+```
+<path to plink.exe> --bfile HapMap_3_r3_8 --hwe 1e-6 --make-bed --out HapMap_hwe_filter_step1
+```
+
+In our example
+
+```
+C:\HandsOn\plink.exe --bfile HapMap_3_r3_8 --hwe 1e-6 --make-bed --out HapMap_hwe_filter_step1
+```
+
+The HWE threshold for the cases filters out only SNPs which deviate extremely from HWE. 
+This second HWE step only focusses on cases because in the controls all SNPs with a HWE p-value < hwe 1e-6 were already removed
+
+```
+<path to plink.exe> --bfile HapMap_hwe_filter_step1 --hwe 1e-10 --hwe-all --make-bed --out HapMap_3_r3_9
+```
+
+In our example
+
+```
+C:\HandsOn\plink.exe --bfile HapMap_hwe_filter_step1 --hwe 1e-10 --hwe-all --make-bed --out HapMap_3_r3_9
+```
+
+Theoretical background for this step is given in our accompanying article: https://www.ncbi.nlm.nih.gov/pubmed/29484742 .
+
+![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img20.PNG)
+
+
+#### Step 5
