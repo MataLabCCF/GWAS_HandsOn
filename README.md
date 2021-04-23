@@ -34,8 +34,35 @@ You have to install the RStudio after install R. We recomend to move plink.exe t
 
 ## Execution of Tutorial 1
 
-Once you've created a directory in which you have downloaded and unzipped the folder: 1_QC_GWAS.zip, you are ready to start the first part of the actual tutorial. All steps of this tutorial will be excecuted using the commands from the main script: 1_Main_script_QC_GWAS.txt, the only thing necessary in completing the tutorial is copy-and-paste the commands from the main script at the prompt Windows device. Note, make sure you are in the directory containing all files, which is the directory after the last command of step 2. There is no need to open the other files manually.
+Once you've created a directory in which you have downloaded and unzipped the folder: 1_QC_GWAS.zip, you are ready to start the first part of the actual tutorial. All steps of this tutorial will be excecuted using the commands from the main script: 1_Main_script_QC_GWAS.txt, the only thing necessary in completing the tutorial is copy-and-paste the commands from the main script at the prompt Windows device. Note, make sure you are in the directory containing all files, which is the directory after the last command of step 2. There is no need to open the other files manually. Using the command tree inside the folder we can see the list of the files inside the folder (and the files inside the folders inside)
 
 ![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img5.PNG)
 
-Different from the original material, we will use this GitHub readme as the tutorial file
+Different from the original material, we will use this GitHub readme as the tutorial file.
+
+### Explanation of the main script
+
+This tutorial uses freely available HapMap data: hapmap3_r3_b36_fwd.consensus.qc. The authors simulated a binary outcome measure (i.e., a binary phenotypic trait) and added this to the dataset. The outcome measure was only simulated for the founders in the HapMap data. This data set will be referred to as HapMap_3_r3_1. 
+
+The HapMap data, without their simulated outcome measure, can also be obtained from http://hapmap.ncbi.nlm.nih.gov/downloads/genotypes/2010-05_phaseIII/plink_format/ 
+
+It is essential for the execution of the tutorial that that all scripts belonging to this tutorial are in the same directory on your Windows workstation. **We want to remeber that this GitHub is a modification to perform this steps on Windows computer.**
+
+Many scripts include comments which explain how these scripts work. Note, in order to complete the tutorial it is essential to execute all commands in this tutorial.
+
+This script can also be used for your own data analysis, to use it as such, replace the name of the HapMap file with the name of your own data file. 
+
+Furthermore, this script is based on a binary outcome measure, and is therefore not applicable for quantitative outcome measures (this would require some adaptations)
+
+Note, most GWAS studies are performed on an ethnic homogenous population, in which population outliers are removed. The HapMap data, used for this tutorial, contains multiple distinct ethnic groups, which makes it problematic for analysis.
+
+Therefore, the authors have selected only the EUR individuals of the complete HapMap sample for the tutorials 1-3. This selection is already performed in the HapMap_3_r3_1 file from the original GitHub page.
+
+The Rscripts used in this tutorial are all executed from the Windows command line (cmd).
+
+Therefore, this tutorial and the other tutorials from our GitHub page, can be completed simply by copy-and-pasting all commands from the ‘main scripts’ into the Windows terminal (cmd).
+
+For a thorough theoretical explanation of all QC steps we refer to the article accompanying this tutorial entitled “A tutorial on conducting Genome-Wide-Association Studies: Quality control and statistical analysis” (https://www.ncbi.nlm.nih.gov/pubmed/29484742).
+
+### Start Analysis
+
