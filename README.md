@@ -78,7 +78,8 @@ In our example, we just type
 cd C:\HandsOn\1_QC_GWAS
 ```
 
-#### Step 1: Investigate missingness per individual and per SNP and make histograms
+#### Step 1
+**Investigate missingness per individual and per SNP and make histograms**
 
 The command to this step is 
 
@@ -94,3 +95,40 @@ C:\HandsOn\plink.exe --bfile HapMap_3_r3_1 --missing
 Output: plink.imiss and plink.lmiss, these files show respectively the proportion of missing SNPs per individual and the proportion of missing individuals per SNP.
 
 ![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img6.PNG)
+
+**Generate plots to visualize the missingness results.**
+
+Open the R script named hist_miss.R on Rstudion and run. To run all lines, you can select all lines and click on the buttom run or use the shotcurt ctrl+alt+r. This script will generate two plots, on for individual missing data (histimiss.pdf) and one for SNP mnissing data(histlmiss.pdf)
+
+![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img7.PNG)
+
+**Remove the missing data**
+
+Delete SNPs and individuals with high levels of missingness, explanation of this and all following steps can be found in box 1 and table 1 of the article mentioned in the comments of this script.
+The following two QC commands will not remove any SNPs or individuals because there is any SNP or individual with missing data greater or equal to 0.2. However, it is good practice to start the QC with these non-stringent thresholds.  
+
+Delete SNPs with missingness >0.2.
+```
+<path to plink.exe> --bfile HapMap_3_r3_1 --geno 0.2 --make-bed --out HapMap_3_r3_2
+```
+Delete SNPs with missingness >0.2.
+```
+<path to plink.exe> --bfile HapMap_3_r3_1 --geno 0.2 --make-bed --out HapMap_3_r3_2
+```
+Delete SNPs with missingness >0.02.
+```
+<path to plink.exe> --bfile HapMap_3_r3_1 --geno 0.2 --make-bed --out HapMap_3_r3_2
+```
+Delete individuals with missingness >0.02.
+```
+<path to plink.exe> --bfile HapMap_3_r3_1 --geno 0.2 --make-bed --out HapMap_3_r3_2
+```
+The previous commands on our example
+```
+C:\HandsOn\plink.exe --bfile HapMap_3_r3_1 --geno 0.2 --make-bed --out HapMap_3_r3_2
+C:\HandsOn\plink.exe --bfile HapMap_3_r3_2 --mind 0.2 --make-bed --out HapMap_3_r3_3
+C:\HandsOn\plink.exe --bfile HapMap_3_r3_3 --geno 0.02 --make-bed --out HapMap_3_r3_4
+C:\HandsOn\plink.exe --bfile HapMap_3_r3_4 --mind 0.02 --make-bed --out HapMap_3_r3_5
+```
+![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img8.PNG)
+![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img9.PNG)
