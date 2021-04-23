@@ -265,7 +265,7 @@ C:\HandsOn\plink.exe --bfile HapMap_3_r3_8 --hardy
 
 ![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img19.PNG)
 
-Open the script hwe.R. This script will select the SNPs with p-value < 0.00001 (we will call these SNPs as 'strongly deviating SNPs'), plot the MAF distribution for all SNPs (histhwe.pdf) and for the strongly deviating SNPs (histhwe_below_theshold.pdf)
+**Open the script hwe.R in R-Studio and run as mentioned before**. This script will select the SNPs with p-value < 0.00001 (we will call these SNPs as 'strongly deviating SNPs'), plot the MAF distribution for all SNPs (histhwe.pdf) and for the strongly deviating SNPs (histhwe_below_theshold.pdf)
 
 By default the --hwe option in plink only filters for controls.
 Therefore, we use two steps, first we use a stringent HWE threshold for controls, followed by a less stringent threshold for the case data.
