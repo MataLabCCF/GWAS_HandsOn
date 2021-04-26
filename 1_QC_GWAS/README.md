@@ -1,8 +1,4 @@
-# GWAS Hands On
-
-This tutorial is a modification of the tutorial at https://github.com/MareesAT/GWA_tutorial. We modified the commands so that they could be run on Windows computers. If you use Unix-based computers (MacOs and Linux) please use the commands and codes present in the original repository
-
-## Preparation
+# Preparation for this tutorial
 
 Step 1) Create the folder in which we will perform the steps. To do this, open your terminal (you can type cmd at search bar) and digit the command:
 
