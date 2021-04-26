@@ -14,12 +14,12 @@ mkdir C:\HandsOn
 
 ![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img1.PNG)
 
-Step 2) Download the first tutorial (https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/Files/1_QC_GWAS.zip) and unzip the file at your analysis folder. In our tutorial we use winrar to uncompress the files.
+Step 2) Download the first tutorial (https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/1_QC_GWAS/1_QC_GWAS.zip) and unzip the file at your analysis folder. In our tutorial we use winrar to uncompress the files.
 
 ![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img2.PNG)
 ![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img3.PNG)
 
-Step 2.1) Download the input data (https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/Files/HapMap_3_r3_1_BED.zip, https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/Files/HapMap_3_r3_1_BIM.zip, https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/Files/HapMap_3_r3_1_FAM.zip) and extract this files inside the folder created on the last step. This tutorial needs the HapMap_3_r3_1.bed, HapMap_3_r3_1.bim and HapMap_3_r3_1.fam file inside the folder created previously
+Step 2.1) Download the input data (https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/1_QC_GWAS//HapMap_3_r3_1_BED.zip, https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/1_QC_GWAS/HapMap_3_r3_1_BIM.zip, https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/1_QC_GWAS/HapMap_3_r3_1_FAM.zip) and extract this files inside the folder created on the last step. This tutorial needs the HapMap_3_r3_1.bed, HapMap_3_r3_1.bim and HapMap_3_r3_1.fam file inside the folder created previously
 
 ![Alt text](https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/ImagesHandsOn/Img3.1.PNG)
 
