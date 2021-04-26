@@ -443,6 +443,6 @@ C:\HandsOn\plink.exe --bfile HapMap_3_r3_11 --remove 0.2_low_call_rate_pihat.txt
 
 ### CONGRATULATIONS!! You've just succesfully completed the first tutorial! You are now able to conduct a proper genetic QC. 
 
-For the next tutorial, using the script: 2_Main_script_MDS.txt, you need the following files:
+For the next tutorial we will need the following files:
 
-The bfile HapMap_3_r3_12 (i.e., HapMap_3_r3_12.fam,HapMap_3_r3_12.bed, and HapMap_3_r3_12.bim and indepSNP.prune.in
+The bfile HapMap_3_r3_12 (i.e., HapMap_3_r3_12.fam,HapMap_3_r3_12.bed, and HapMap_3_r3_12.bim) and indepSNP.prune.in
