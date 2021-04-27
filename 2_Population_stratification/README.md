@@ -2,6 +2,8 @@ On  this topic, we will assume that you run all steps presented in 1_QC_GWAS. Wi
 
 This is the main script for second tutorial from our comprehensive tutorial on GWAS and PRS changed to run on Windows computer. The original tutorial is avaliable at https://github.com/MareesAT/GWA_tutorial/. This step requires a lot of computational capacity and time, so it is recommended that you run the commands on a server. So we will explain the purpose of the analysis and provide the pre-processed data for all students to follow.
 
+You have to download the file present on https://github.com/MataLabCCF/GWAS_HandsOn/blob/main/2_Population_stratification/2_Population_stratification.zip and uncompress at the analysis folder, in our example, C:\HandsOn\
+
 ## Preparation
 
 The original tutorial requires the download of a file with 60 GB from 1KGP (1000 Genomes Project) and processing this file. For this type of analysis the ideal is that you perform these steps on a server. With the aim of allowing the analysis to be elucidated, we carry out the analyzes and provide an overview. If you have access to a server, we recomended you run all the steps of the original tutorial.
