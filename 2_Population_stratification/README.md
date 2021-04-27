@@ -17,12 +17,16 @@ After creating a file with the Individual ID and the respective ancestry we can 
 The output file MDS.pdf demonstrates that our ‘own’ data falls within the European group of the 1000 genomes data. Therefore, we do not have to remove subjects.
 For educational purposes however, we will filter out population stratification outliers. The R script **MDS_merged.R** generated a file named EUR_MDS_merge2, that have all individuals that fits on the interval MDS component 1 < -0.04 and MDS component 2 > 0.03. We will keep this individuals, using the PLINK on the data generated on 1_QC_GWAS
 ```
+copy <path of analysis folder>\1_QC_GWAS\HapMap_3_r3_12.* <path of analysis folder>\2_Population_stratification
+copy <path of analysis folder>\1_QC_GWAS\indepSNP.prune.in <path of analysis folder>\2_Population_stratification
 <path to plink.exe> --bfile HapMap_3_r3_12 --keep EUR_MDS_merge2 --make-bed --out HapMap_3_r3_13
 ```
 
 In our example
 
 ```
+copy C:\HandsOn\1_QC_GWAS\HapMap_3_r3_12.* C:\HandsOn\2_Population_stratification
+copy C:\HandsOn\1_QC_GWAS\indepSNP.prune.in C:\HandsOn\2_Population_stratification
 C:\HandsOn\plink.exe --bfile HapMap_3_r3_12 --keep EUR_MDS_merge2 --make-bed --out HapMap_3_r3_13
 ```
 
