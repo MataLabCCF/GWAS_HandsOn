@@ -21,6 +21,7 @@ For educational purposes however, we will filter out population stratification o
 ```
 copy <path of analysis folder>\1_QC_GWAS\HapMap_3_r3_12.* <path of analysis folder>\2_Population_stratification
 copy <path of analysis folder>\1_QC_GWAS\indepSNP.prune.in <path of analysis folder>\2_Population_stratification
+cd <path of analysis folder>\2_Population_stratification
 <path to plink.exe> --bfile HapMap_3_r3_12 --keep EUR_MDS_merge2 --make-bed --out HapMap_3_r3_13
 ```
 
@@ -29,6 +30,7 @@ In our example
 ```
 copy C:\HandsOn\1_QC_GWAS\HapMap_3_r3_12.* C:\HandsOn\2_Population_stratification
 copy C:\HandsOn\1_QC_GWAS\indepSNP.prune.in C:\HandsOn\2_Population_stratification
+cd C:\HandsOn\2_Population_stratification
 C:\HandsOn\plink.exe --bfile HapMap_3_r3_12 --keep EUR_MDS_merge2 --make-bed --out HapMap_3_r3_13
 ```
 
