@@ -91,7 +91,7 @@ This file gives a Bonferroni corrected p-value, along with FDR and others.
 ### Permutation
 
 This is a computational intensive step. Further pros and cons of this method, which can be used for association and dealing with multiple testing, are described in the article corresponding to this tutorial (https://www.ncbi.nlm.nih.gov/pubmed/29484742).
-The reduce computational time we only perform this test on a subset of the SNPs from chromosome 22. To create the list of SNPs that we will run the permutation, please execute te R script called "makeSubset.R".
+The reduce computational time we only perform this test on a subset of the SNPs from chromosome 22. To create the list of SNPs that we will run the permutation, please execute te R script called **makeSubset.R**.
 
 
 ```
