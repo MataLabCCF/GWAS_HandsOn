@@ -111,7 +111,7 @@ Delete SNPs with missingness >0.2.
 ```
 <path to plink.exe> --bfile HapMap_3_r3_1 --geno 0.2 --make-bed --out HapMap_3_r3_2
 ```
-Delete SNPs with missingness >0.2.
+Delete individual with missingness >0.2.
 ```
 <path to plink.exe> --bfile HapMap_3_r3_2 --mind 0.2 --make-bed --out HapMap_3_r3_3
 ```
