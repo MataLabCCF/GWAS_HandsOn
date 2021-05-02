@@ -14,6 +14,8 @@ After this, we extract the SNPs in common between the data downloaded from the 1
 
 After make the QC in 1KGP data, merge the both databases and prune the SNPs in LD, we performed the Multidimensional scaling (MDS), that we use in order to measure the similarity between the individuals. Because we are using all populations in the 1KGP, it is possible to find out if our data are more similar to which continental populations. In this tutorial we want to know if our individuals are similar to European individuals and, if there is any individual similar to other populations, we should remove it to avoid spourious associations.
 
+## Running
+
 After creating a file with the Individual ID and the respective ancestry we can plot the MDS using the script **MDS_merged.R**. After running the script we can see that our individuals (named OWN on the plot) are grouped with European individuals.
 
 The output file MDS.pdf demonstrates that our ‘own’ data falls within the European group of the 1000 genomes data. Therefore, we do not have to remove subjects.
